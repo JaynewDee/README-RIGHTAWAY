@@ -20,8 +20,8 @@ const prompts = ({
 - [Usage](#usage)
 - [License](#license)
 - [Credits](#credits)
-- [Questions](#contribution questions)
-- [My GitHub](#my github profile)
+- [Questions](#contribution-questions)
+- [My GitHub](#my-github-profile)
 ### Installation:
 > ${installation}
 ### Usage:
@@ -32,9 +32,9 @@ const prompts = ({
 > ${credits}
 ### Contribution Questions
 > Reach out to me at this email with any questions regarding the project:
-  > ${email}
+>> ${email}
 ### My GitHub Profile:
-> ${github}
+> [GitHub](https://github.com/${github})
 `;
 
 const questions = [{
@@ -105,7 +105,7 @@ const questions = [{
     message: 'Provide your github username:',
     filter(value) {
       newVal = value.replace(/\s/g,'');
-      return `https://github.com/${newVal}`
+      return newVal;
     }
   }
 

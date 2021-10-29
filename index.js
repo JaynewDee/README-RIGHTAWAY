@@ -74,8 +74,7 @@ const questions = [{
           value = `[![License: CC0-1.0](https://licensebuttons.net/l/zero/1.0/80x15.png)](http://creativecommons.org/publicdomain/zero/1.0/)`
           return value;
         case 'Eclipse':
-          value = `[![License](https://img.shields.io/badge/License-EPL_1.0-red.svg)](https://opensource.org/licenses/EPL-1.0)
-          `
+          value = `[![License](https://img.shields.io/badge/License-EPL_1.0-red.svg)](https://opensource.org/licenses/EPL-1.0)`
           return value;
         case 'GNU General Public License':
           value = `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`
@@ -108,7 +107,6 @@ const questions = [{
       return newVal;
     }
   }
-
 ];
 inquirer.prompt(questions)
   .then((answers) =>
@@ -117,7 +115,6 @@ inquirer.prompt(questions)
 
 
 function transferTemplate(answersObj) {
-  console.log(answersObj);
   const readmeTemplate = prompts(answersObj);
-  fs.writeFile('readme.md', readmeTemplate, (err) => err ? console.log(err) : console.log('Creation of README successful!'))
+  fs.writeFile('README.md', readmeTemplate, (err) => err ? console.log(err) : console.log('Creation of README successful!'))
 }

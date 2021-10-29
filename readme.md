@@ -1,7 +1,7 @@
 
-# sacooby badoobie
+# ReadMe, RightAway
 ### Description: 
-> kdfkyqouer
+> This is a simple command line utility created using the node package inquirer.  It is intended to demonstrate the creator's proficiency in working with command line applications.
 ### Table of Contents: 
 - [Installation](#installation)
 - [Usage](#usage)
@@ -10,13 +10,13 @@
 - [Questions](#contribution-questions)
 - [My GitHub](#my-github-profile)
 ### Installation:
-> lyoquer
+> One must simply visit my github page and clone the repo to their local machine.  Once cloned, the application can be initiated on the command line at the root directory using node as a runtime environment.
 ### Usage:
-> yaoeurq
+> This application is intended for use by other developers to quickly generate a readme file for a project.
 ### License:
-> [![License: CC0-1.0](https://licensebuttons.net/l/zero/1.0/80x15.png)](http://creativecommons.org/publicdomain/zero/1.0/)
+> [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ### Credits:
-> dklyfoquer
+> SMU Teaching Staff / My awesome friends
 ### Contribution Questions
 > Reach out to me at this email with any questions regarding the project:
 >> jdiehl2236@gmail.com

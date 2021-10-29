@@ -1,79 +1,123 @@
-// TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-;
-
-
-// TODO: Create an array of questions for user input
 const prompts = ({
     title,
     description,
-    contents
+    installation,
+    usage,
+    license,
+    credits,
+    email,
+    github
   }) =>
   `
 # ${title}
 ### Description: 
 > ${description}
 ### Table of Contents: 
--
--
--
-- 
-- 
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Credits](#credits)
+- [Questions](#contribution questions)
+- [My GitHub](#my github profile)
+### Installation:
+> ${installation}
+### Usage:
+> ${usage}
+### License:
+> ${license}
+### Credits:
+> ${credits}
+### Contribution Questions
+> Reach out to me at this email with any questions regarding the project:
+  > ${email}
+### My GitHub Profile:
+> ${github}
 `;
 
-const proCess = process.argv;
-console.log(proCess);
+const questions = [{
+    type: 'input',
+    name: 'title',
+    message: "What is the the title of your project?",
+  },
+  {
+    type: 'input',
+    name: 'description',
+    message: 'Provide a succinct but detailed description of the project:',
+  },
+  {
+    type: 'input',
+    name: 'installation',
+    message: 'Describe the steps required to install your application:'
+  },
+  {
+    type: 'input',
+    name: 'usage',
+    message: 'Explain how your application is meant to be used:'
+  },
+  {
+    type: 'list',
+    name: 'license',
+    message: "Which type of license would you like to include?",
+    choices: [
+      "Creative Commons",
+      "Eclipse",
+      "GNU General Public License",
+      "MIT",
+      "Do Whatever You Want"
+    ],
+    filter(value) {
+      switch (value) {
+        case 'Creative Commons':
+          value = `[![License: CC0-1.0](https://licensebuttons.net/l/zero/1.0/80x15.png)](http://creativecommons.org/publicdomain/zero/1.0/)`
+          return value;
+        case 'Eclipse':
+          value = `[![License](https://img.shields.io/badge/License-EPL_1.0-red.svg)](https://opensource.org/licenses/EPL-1.0)
+          `
+          return value;
+        case 'GNU General Public License':
+          value = `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`
+          return value;
+        case 'MIT':
+          value = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+          return value;
+        case 'Do Whatever You want':
+          value = `[![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)`
+          return value;
+      }
+    }
+  },
+  {
+    type: 'input',
+    name: 'credits',
+    message: "Give credit here to any developers or technologies that assisted in the creation of this project:"
+  },
+  {
+    type: 'input',
+    name: 'email',
+    message: 'Provide your email address:',
+  },
+  {
+    type: 'input',
+    name: 'github',
+    message: 'Provide your github username:',
+    filter(value) {
+      newVal = value.replace(/\s/g,'');
+      return `https://github.com/${newVal}`
+    }
+  }
 
-  const questions = [{
-      type: 'input',
-      name: 'title',
-      message: "What is the the title of your project?",
-    },
-    {
-      type: 'input',
-      name: 'description',
-      message: 'Provide a succinct but detailed description of the project:',
-    },
-    {
-      type: 'comfirm',
-      name: 'contents',
-      message: 'Do you want to include a Table of Contents section?',
-      default: 'y/N',
-    },
-    // {
-    //   type: 'input',
-    //   name: 'installation',
-    //   message: 'Explain the steps required to install your project:',
-    // },
-    // {
-    //   type: 'input',
-    //   name: 'usage',
-    //   message: 'Describe how the application is to be used:',
-    // },
-    // {
-    //   type: 'input',
-    //   name: 'contribution',
-    //   message: 'Tell your fellow developers how to contribute to the project:',
-    // },
-  ];
-inquirer.prompt(questions).then(function transferTemplate(answers) {
-    //  if (answers[2] == false){
-    //       answers[2] = ''}
-    const readmeTemplate = prompts(answers);
-    fs.writeFile('readme.md', readmeTemplate, (err) =>
-      err ? console.log(err) : console.log('Creation of README successful!'))
-  }).catch((error) => 
-    console.log(error));
+];
+inquirer.prompt(questions)
+  .then((answers) =>
+    transferTemplate(answers))
+  .catch((error) => console.log(error));
 
-//   Description, Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
+function transferTemplate(answersObj) {
+  console.log(answersObj);
+  const readmeTemplate = prompts(answersObj);
+  fs.writeFile('readme.md', readmeTemplate, (err) => err ? console.log(err) : console.log('Creation of README successful!'))
+}
